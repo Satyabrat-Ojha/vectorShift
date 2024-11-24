@@ -3,6 +3,7 @@ import axios from "axios";
 // import { toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { Background } from "reactflow";
 
 export const SubmitButton = () => {
   const nodes = useStore((state) => state.nodes);
@@ -17,7 +18,7 @@ export const SubmitButton = () => {
       formData.append("pipeline", pipeline);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/pipelines/parse",
+        "https://vector-shift-backend.vercel.app/pipelines/parse",
         formData,
         {
           headers: {
@@ -50,7 +51,27 @@ export const SubmitButton = () => {
         justifyContent: "center",
       }}
     >
-      <button type="submit" onClick={handleSubmit}>
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        style={{
+          backgroundColor: "rgb(123, 143, 255)", // Green background
+          color: "white", // White text
+          padding: "10px 20px", // Padding
+          border: "none", // No border
+          borderRadius: "5px", // Rounded corners
+          cursor: "pointer", // Pointer cursor
+          fontSize: "16px", // Font size
+          transition: "background-color 0.3s", // Smooth transition on hover
+          outline: "none",
+        }} //
+        onMouseOver={(e) =>
+          (e.target.style.backgroundColor = "rgb(110, 123, 255)")
+        }
+        onMouseOut={(e) =>
+          (e.target.style.backgroundColor = "rgb(123, 143, 255)")
+        }
+      >
         Submit
       </button>
     </div>
